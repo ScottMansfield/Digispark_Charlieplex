@@ -3,7 +3,6 @@
  */
 
 #include "Digispark_Charlieplex.h"
-#include "LetterDisplay.h"
 
 state currentState;
 long nextStateChangeTime;

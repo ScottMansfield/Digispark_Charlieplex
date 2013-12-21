@@ -38,4 +38,8 @@
 
 typedef int state;
 
+// And the rest of the headers
+#include "Interrupts.h"
+#include "LetterDisplay.h"
+
 #endif /* DIGISPARK_CHARLIEPLEX_H */
