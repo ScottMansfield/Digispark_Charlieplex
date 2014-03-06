@@ -32,13 +32,14 @@
 #define STATE_Y 24
 #define STATE_Z 25
 
-#define NUM_STATES 26
+#define NUM_STATES 2
 
 #define DELAY 1000
 
 typedef int state;
 
 // And the rest of the headers
+#include "Arduino.h"
 #include "Interrupts.h"
 #include "LetterDisplay.h"
 

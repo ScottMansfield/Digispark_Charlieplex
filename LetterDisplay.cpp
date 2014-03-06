@@ -2,437 +2,258 @@
  * Display different letters
  */
 
-#include <Arduino.h>
 #include "LetterDisplay.h"
-#include "Digispark_Pins.h"
 
-#define LED_DELAY 500
-
-void LEDon(int vin, int gnd)
+LetterDisplay::LetterDisplay()
 {
-  pinMode(CH_0, INPUT);
-  pinMode(CH_1, INPUT);
-  pinMode(CH_2, INPUT);
-  pinMode(CH_3, INPUT);
-  pinMode(CH_4, INPUT);
-  
-  pinMode(vin, OUTPUT);
-  pinMode(gnd, OUTPUT);
-  
-  digitalWrite(vin, HIGH);
-  digitalWrite(gnd, LOW);
-  
-  delayMicroseconds(LED_DELAY);
+  // Initialize the huge data chunk for
+  // 1. The lengths of letter coordinates and
+  // 2. The coordinates themselves.
 }
 
-void allOn()
+void LetterDisplay::allOn()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_0, CH_4);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_2);
-  LEDon(CH_1, CH_3);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_1);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_2, CH_4);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_1);
-  LEDon(CH_3, CH_2);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
-  LEDon(CH_4, CH_3);
+  numLeds = 20;
+  uint8_t localCoords[] =
+    { 0x01, 0x02, 0x03, 0x04,
+      0x10, 0x12, 0x13, 0x14,
+      0x20, 0x21, 0x23, 0x24,
+      0x30, 0x31, 0x32, 0x34,
+      0x40, 0x41, 0x42, 0x43 };
 }
 
-void showA()
+void LetterDisplay::showA()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_4);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_1);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_2, CH_4);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
+  numLeds = 12;
+  uint8_t localCoords[] =
+    { 0x01, 0x04, 0x10, 0x14,
+      0x20, 0x21, 0x23, 0x24,
+      0x30, 0x34, 0x41, 0x42 };
 }
 
-void showB()
+void LetterDisplay::showB()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_1);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
+  numLeds = 13;
+  uint8_t localCoords[] =
+    { 0x01, 0x02, 0x03, 0x10,
+      0x14, 0x20, 0x21, 0x23,
+      0x30, 0x34, 0x40, 0x41,
+      0x42 };
 }
 
-void showC()
+void LetterDisplay::showC()
 {
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
+  numLeds = 9;
+  uint8_t localCoords[] =
+    { 0x02, 0x03, 0x10, 0x14,
+      0x20, 0x30, 0x34, 0x41,
+      0x42 };
 }
 
-void showD()
+void LetterDisplay::showD()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_4);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2); 
+  numLeds = 12;
+  uint8_t localCoords[] =
+    { 0x01, 0x02, 0x03, 0x10,
+      0x14, 0x20, 0x24, 0x30,
+      0x34, 0x40, 0x41, 0x42 };
 }
 
-void showE()
+void LetterDisplay::showE()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_0, CH_4);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_1);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
-  LEDon(CH_4, CH_3);
+  numLeds = 13;
+  uint8_t localCoords[] =
+    { 0x01, 0x02, 0x03, 0x04,
+      0x10, 0x20, 0x21, 0x23,
+      0x30, 0x40, 0x41, 0x42,
+      0x43 };
 }
 
-void showF()
+void LetterDisplay::showF()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_1);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
-  LEDon(CH_4, CH_3);
+  numLeds = 10;
+  uint8_t localCoords[] =
+    { 0x01, 0x10, 0x20, 0x21,
+      0x23, 0x30, 0x40, 0x41,
+      0x42, 0x43 };
 }
 
-void showG()
+void LetterDisplay::showG()
 {
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_2, CH_4);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
-  LEDon(CH_4, CH_3);
+  numLeds = 11;
+  uint8_t localCoords[] =
+    { 0x02, 0x03, 0x10, 0x14,
+      0x20, 0x23, 0x24, 0x30,
+      0x41, 0x42, 0x43 };
 }
 
-void showH()
+void LetterDisplay::showH()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_4);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_1);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_2, CH_4);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_3);
+  numLeds = 12;
+  uint8_t localCoords[] =
+    { 0x01, 0x04, 0x10, 0x14,
+      0x20, 0x21, 0x23, 0x24,
+      0x30, 0x34, 0x40, 0x43 };
 }
 
-void showI()
+void LetterDisplay::showI()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_0, CH_4);
-  LEDon(CH_1, CH_2);
-  LEDon(CH_1, CH_3);
-  LEDon(CH_2, CH_1);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_3, CH_1);
-  LEDon(CH_3, CH_2);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
-  LEDon(CH_4, CH_3);
+  numLeds = 14;
+  uint8_t localCoords[] =
+    { 0x01, 0x02, 0x03, 0x04,
+      0x12, 0x13, 0x21, 0x23,
+      0x31, 0x32, 0x40, 0x41,
+      0x42, 0x43 };
 }
 
-void showJ()
+void LetterDisplay::showJ()
 {
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_4);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_3);
+  numLeds = 7;
+  uint8_t localCoords[] =
+    { 0x02, 0x03, 0x10, 0x14,
+      0x24, 0x34, 0x43 };
 }
 
-void showK()
+void LetterDisplay::showK()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_4);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_3);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_1);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_2);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_3);
+  numLeds = 10;
+  uint8_t localCoords[] =
+    { 0x01, 0x04, 0x10, 0x13,
+      0x20, 0x21, 0x30, 0x32,
+      0x40, 0x43 };
 }
 
-void showL()
+void LetterDisplay::showL()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_0, CH_4);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_4, CH_0);
+  numLeds = 8;
+  uint8_t localCoords[] =
+    { 0x01, 0x02, 0x03, 0x04,
+      0x10, 0x20, 0x30, 0x40 };
 }
 
-void showM()
+void LetterDisplay::showM()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_4);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_4);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_1);
-  LEDon(CH_3, CH_2);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_3);
+  numLeds = 12;
+  uint8_t localCoords[] =
+    { 0x01, 0x04, 0x10, 0x14,
+      0x20, 0x24, 0x30, 0x31,
+      0x32, 0x34, 0x40, 0x43 };
 }
 
-void showN()
+void LetterDisplay::showN()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_4);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_3);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_2, CH_4);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_1);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_3);
+  numLeds = 13;
+  uint8_t localCoords[] =
+    { 0x01, 0x04, 0x10, 0x13,
+      0x14, 0x20, 0x23, 0x24,
+      0x30, 0x31, 0x34, 0x40,
+      0x43 };
 }
 
-void showO()
+void LetterDisplay::showO()
 {
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_4);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
+  numLeds = 10;
+  uint8_t localCoords[] =
+    { 0x02, 0x03, 0x10, 0x14,
+      0x20, 0x24, 0x30, 0x34,
+      0x41, 0x42 };
 }
 
-void showP()
+void LetterDisplay::showP()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_1);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
+  numLeds = 10;
+  uint8_t localCoords[] =
+    { 0x01, 0x10, 0x20, 0x21,
+      0x23, 0x30, 0x34, 0x40,
+      0x41, 0x42 };
 }
 
-void showQ()
+void LetterDisplay::showQ()
 {
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_0, CH_4);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_3);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_4);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
+  numLeds = 12;
+  uint8_t localCoords[] =
+    { 0x02, 0x03, 0x04, 0x10,
+      0x13, 0x14, 0x20, 0x24,
+      0x30, 0x34, 0x41, 0x42 };
 }
 
-void showR()
+void LetterDisplay::showR()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_4);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_3);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_1);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
+  numLeds = 12;
+  uint8_t localCoords[] =
+    { 0x01, 0x04, 0x10, 0x13,
+      0x20, 0x21, 0x23, 0x30,
+      0x34, 0x40, 0x41, 0x42 };
 }
 
-void showS()
+void LetterDisplay::showS()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_1);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
-  LEDon(CH_4, CH_3);
+  numLeds = 10;
+  uint8_t localCoords[] =
+    { 0x01, 0x02, 0x03, 0x14,
+      0x21, 0x23, 0x30, 0x41,
+      0x42, 0x43 };
 }
 
-void showT()
+void LetterDisplay::showT()
 {
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_1, CH_2);
-  LEDon(CH_1, CH_3);
-  LEDon(CH_2, CH_1);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_3, CH_1);
-  LEDon(CH_3, CH_2);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
-  LEDon(CH_4, CH_3);
+  numLeds = 12;
+  uint8_t localCoords[] =
+    { 0x02, 0x03, 0x12, 0x13,
+      0x21, 0x23, 0x31, 0x32,
+      0x40, 0x41, 0x42, 0x43 };
 }
 
-void showU()
+void LetterDisplay::showU()
 {
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_4);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_3);
+  numLeds = 10;
+  uint8_t localCoords[] =
+    { 0x02, 0x03, 0x10, 0x14,
+      0x20, 0x24, 0x30, 0x34,
+      0x40, 0x43 };
 }
 
-void showV()
+void LetterDisplay::showV()
 {
-  LEDon(CH_0, CH_2);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_3);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_4);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_3);
+  numLeds = 9;
+  uint8_t localCoords[] =
+    { 0x02, 0x10, 0x13, 0x20,
+      0x24, 0x30, 0x34, 0x40,
+      0x43 };
 }
 
-void showW()
+void LetterDisplay::showW()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_4);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_2);
-  LEDon(CH_1, CH_3);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_0);
-  LEDon(CH_2, CH_4);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_3);
+  numLeds = 12;
+  uint8_t localCoords[] =
+    { 0x01, 0x04, 0x10, 0x12,
+      0x13, 0x14, 0x20, 0x24,
+      0x30, 0x34, 0x40, 0x43 };
 }
 
-void showX()
+void LetterDisplay::showX()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_4);
-  LEDon(CH_1, CH_0);
-  LEDon(CH_1, CH_4);
-  LEDon(CH_2, CH_1);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_3);
+  numLeds = 10;
+  uint8_t localCoords[] =
+    { 0x01, 0x04, 0x10, 0x14,
+      0x21, 0x23, 0x30, 0x34,
+      0x40, 0x43 };
 }
 
-void showY()
+void LetterDisplay::showY()
 {
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_1, CH_2);
-  LEDon(CH_1, CH_3);
-  LEDon(CH_2, CH_1);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_3, CH_0);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_3);
+  numLeds = 10;
+  uint8_t localCoords[] =
+    { 0x02, 0x03, 0x12, 0x13,
+      0x21, 0x23, 0x30, 0x34,
+      0x40, 0x43 };
 }
 
-void showZ()
+void LetterDisplay::showZ()
 {
-  LEDon(CH_0, CH_1);
-  LEDon(CH_0, CH_2);
-  LEDon(CH_0, CH_3);
-  LEDon(CH_0, CH_4);
-  LEDon(CH_1, CH_2);
-  LEDon(CH_2, CH_3);
-  LEDon(CH_3, CH_4);
-  LEDon(CH_4, CH_0);
-  LEDon(CH_4, CH_1);
-  LEDon(CH_4, CH_2);
-  LEDon(CH_4, CH_3);
+  numLeds = 11;
+  uint8_t localCoords[] =
+    { 0x01, 0x02, 0x03, 0x04,
+      0x12, 0x23, 0x34, 0x40,
+      0x41, 0x42, 0x43 };
 }
