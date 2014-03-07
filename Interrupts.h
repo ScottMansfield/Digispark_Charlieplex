@@ -8,6 +8,8 @@
 #include "wiring.h"
 #include <avr/interrupt.h>
 
+#include "LetterDisplay.h"
+
 #define COUNTER_VAL 0x7F
 
 void setupTimerInterrupt();

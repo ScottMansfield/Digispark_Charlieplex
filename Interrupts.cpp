@@ -39,12 +39,10 @@ void setupTimerInterrupt ()
 
 ISR (TIM1_COMPA_vect)
 {
-  static uint8_t curLed = 0;
+  static LetterDisplay* ld = LetterDisplay::getInstance();
   
-  curLed = (curLed + 1) % numLeds;
+  uint8_t led = ld->getNextCoord();
   
-  // These globals are defined in Interrupts.h
-  uint8_t led = coords[curLed];
   uint8_t row = (led & 0xF0) >> 4;
   uint8_t col = led & 0x0F;
   
