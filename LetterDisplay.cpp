@@ -4,12 +4,11 @@
 
 #include "LetterDisplay.h"
 
-LetterDisplay* LetterDisplay::getInstance()
-{
-  static LetterDisplay* instance = new LetterDisplay();
-  
-  return instance;
-}
+//////////////////////////////////////////
+// A whole bunch of data initialization //
+//////////////////////////////////////////
+uint8_t LetterDisplay::currentLetter = 0;
+uint8_t LetterDisplay::currentIndex = 0;
 
 // The lengths of each letter's coordinates in the data array
 // Data are from A to Z
@@ -86,6 +85,9 @@ const uint8_t* LetterDisplay::letterCoords = (uint8_t[]) {
   // Z
   0x01, 0x02, 0x03, 0x04, 0x12, 0x23, 0x34, 0x40, 0x41, 0x42, 0x43 };
 
+/////////////////////////////
+// LetterDisplay functions //
+/////////////////////////////
 void LetterDisplay::setLetter(char letter)
 {
   currentLetter = letter - 'a';

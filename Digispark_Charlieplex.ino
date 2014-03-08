@@ -8,9 +8,8 @@ LetterDisplay* ld;
 
 void setup()
 {
-  ld = LetterDisplay::getInstance();
-  
-  ld->setLetter('a');
+  // The letter is code is assumed to be lowercase, but the display is case-agnostic
+  LetterDisplay::setLetter('a');
   
   setupTimerInterrupt();
 }
@@ -26,13 +25,15 @@ void loop()
   {
     currentLetter = nextLetter(currentLetter);
     nextChangeTime = currentMillis + DELAY;
-    ld->setLetter(currentLetter);
+    LetterDisplay::setLetter(currentLetter);
   }
 }
 
 char nextLetter(char current)
 {
-  return (((current - 'a') + 1) % 25) + 'a';
+  //const char modval = 'z' - 'a';
+  //return (((current - 'a') + 1) % modval) + 'a';
+  return 'a';
 }
 
 

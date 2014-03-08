@@ -10,26 +10,16 @@
 class LetterDisplay
 {
 public:
-  static LetterDisplay* getInstance();
-  
   // Sets the internal state to display the next letter
-  void setLetter(char l);
+  static void setLetter(char l);
   
   // Gets the next coordinate to display, playing by all the rules
-  uint8_t getNextCoord();
+  static uint8_t getNextCoord();
 
 private:
-  // Private constructor for privacy
-  LetterDisplay() { };
-  
-  // Other private constructors to prevent compiler-generated versions
-  // These are not implemented.
-  LetterDisplay(LetterDisplay const& copy);
-  LetterDisplay& operator=(LetterDisplay const& copy);
-  
   // Keeping track of the state, basically the coords on display
-  uint8_t currentLetter;
-  uint8_t currentIndex;
+  static uint8_t currentLetter;
+  static uint8_t currentIndex;
   
   // The index of the start of a letter in the coordinates array
   // the indices go above 255, so I need 16 bits here :(

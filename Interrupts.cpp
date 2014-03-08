@@ -39,9 +39,7 @@ void setupTimerInterrupt ()
 
 ISR (TIM1_COMPA_vect)
 {
-  static LetterDisplay* ld = LetterDisplay::getInstance();
-  
-  uint8_t led = ld->getNextCoord();
+  uint8_t led = LetterDisplay::getNextCoord();
   
   uint8_t row = (led & 0xF0) >> 4;
   uint8_t col = led & 0x0F;
