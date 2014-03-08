@@ -6,11 +6,10 @@
 
 LetterDisplay* LetterDisplay::getInstance()
 {
-  static LetterDisplay* instance;
+  static LetterDisplay* instance = new LetterDisplay();
   
   return instance;
 }
-
 
 // The lengths of each letter's coordinates in the data array
 // Data are from A to Z
@@ -87,12 +86,17 @@ const uint8_t* LetterDisplay::letterCoords = (uint8_t[]) {
   // Z
   0x01, 0x02, 0x03, 0x04, 0x12, 0x23, 0x34, 0x40, 0x41, 0x42, 0x43 };
 
-void LetterDisplay::setLetter(char l)
+void LetterDisplay::setLetter(char letter)
 {
-  // set base index and coordinates size
+  currentLetter = letter - 'a';
+  currentIndex = 0;
 }
 
 uint8_t LetterDisplay::getNextCoord()
 {
-  return 0;
+  currentIndex = (currentIndex + 1) % coordsLengths[currentLetter];
+  uint16_t base = letterIndices[currentIndex];
+  
+  return letterCoords[base + currentIndex];
 }
+

@@ -19,12 +19,20 @@ public:
   uint8_t getNextCoord();
 
 private:
-  LetterDisplay();
+  // Private constructor for privacy
+  LetterDisplay() { };
+  
+  // Other private constructors to prevent compiler-generated versions
+  // These are not implemented.
+  LetterDisplay(LetterDisplay const& copy);
+  LetterDisplay& operator=(LetterDisplay const& copy);
   
   // Keeping track of the state, basically the coords on display
+  uint8_t currentLetter;
   uint8_t currentIndex;
   
   // The index of the start of a letter in the coordinates array
+  // the indices go above 255, so I need 16 bits here :(
   static const uint16_t* letterIndices;
   
   // The length (number of coordinates) of each letter
